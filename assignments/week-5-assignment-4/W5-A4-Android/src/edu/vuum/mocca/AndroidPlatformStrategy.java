@@ -60,7 +60,10 @@ public class AndroidPlatformStrategy extends PlatformStrategy
          * and appends the outputString to a TextView. 
          */
         // TODO - You fill in here.
-    	(new Handler(Looper.getMainLooper())).post(new Runnable() {
+    	Activity activity = mActivity.get();
+    	if (activity == null) return;
+    	
+    	activity.runOnUiThread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -73,8 +76,20 @@ public class AndroidPlatformStrategy extends PlatformStrategy
     /** Indicate that a game thread has finished running. */
     public void done()
     {	
+    	// just count down works fine though
+    	
         // TODO - You fill in here.
-    	mLatch.countDown();
+    	Activity activity = mActivity.get();
+    	if (activity == null) return;
+    	
+    	activity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mLatch.countDown();
+			}
+		});
     }
 
     /** Barrier that waits for all the game threads to finish. */
