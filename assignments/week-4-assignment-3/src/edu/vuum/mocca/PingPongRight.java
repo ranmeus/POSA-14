@@ -85,13 +85,16 @@ public class PingPongRight {
              */
 
             // TODO - You fill in here.
-        	for(int i = 1; i < mMaxLoopIterations + 1; i++){
-        		acquire();
-        		System.out.println(mString + "(" + i + ")");
-        		release();
+        	try{
+	        	int i = 0;
+	        	while(i++ < mMaxLoopIterations){
+	        		acquire();
+	        		System.out.println(mString + "(" + i + ")");
+	        		release();
+	        	}
+        	}finally{
         		mLatch.countDown();
-        	}
-        	
+	        }
         }
 
         /**
@@ -122,7 +125,7 @@ public class PingPongRight {
 
         // TODO initialize this by replacing null with the appropriate
         // constructor call.
-        mLatch = new CountDownLatch(mMaxIterations*2);
+        mLatch = new CountDownLatch(2);
 
         // Create the ping and pong SimpleSemaphores that control
         // alternation between threads.
