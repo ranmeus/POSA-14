@@ -62,7 +62,6 @@ public class DownloadBase extends Activity {
      */
     void displayBitmap (String pathname) {
     	mCurrentBitmap = BitmapFactory.decodeFile(pathname);
-    	
     	mImageView.setImageBitmap(mCurrentBitmap);
     }
     

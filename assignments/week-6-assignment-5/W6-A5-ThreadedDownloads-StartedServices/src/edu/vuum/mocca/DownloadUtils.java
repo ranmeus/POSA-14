@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.net.URL;
 
 import edu.vuum.mocca.R;
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -50,7 +50,7 @@ public class DownloadUtils {
      */
     // TODO - You can change this to the appropriate setting for your
     // environment.
-    static final boolean DOWNLOAD_OFFLINE = true;
+    static final boolean DOWNLOAD_OFFLINE = false;
     
     /**
      * Make an Intent which will start a service if provided as a
@@ -113,6 +113,7 @@ public class DownloadUtils {
         
         try {
             // Send the Message back to the client Activity.
+        	msg.arg1 = Activity.RESULT_OK;
             messenger.send(msg);
         } catch (RemoteException e) {
             e.printStackTrace();
