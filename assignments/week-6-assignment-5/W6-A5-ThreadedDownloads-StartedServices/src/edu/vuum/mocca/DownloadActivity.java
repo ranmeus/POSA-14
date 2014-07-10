@@ -78,7 +78,7 @@ public class DownloadActivity extends DownloadBase {
                 // bitmap that's been downloaded and returned to
                 // the DownloadActivity as a pathname who's Bundle
             	// key is defined by DownloadUtils.PATHNAME_KEY
-            	String pathname = (String)msg.getData().get(DownloadUtils.PATHNAME_KEY);
+            	String pathname = msg.getData().getString(DownloadUtils.PATHNAME_KEY);
             	if (msg.arg1 != RESULT_OK || pathname == null){
             		// sth went wrong
             		return;
