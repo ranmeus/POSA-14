@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.vuum.mocca.ui.LoginActivity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
@@ -69,7 +70,7 @@ public class StorageUtilities {
 		}
 		
 		// If security is private, store it in the app's private directory.
-		if (security == SECURITY_PRIVATE) {
+		if (security == LoginActivity.MAX_SECURITY) {
 			storageDir = context.getFilesDir();
 		}
 		// Otherwise, store the file in a public directory depending on its media type.
