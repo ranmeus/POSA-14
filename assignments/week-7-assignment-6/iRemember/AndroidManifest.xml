@@ -51,9 +51,9 @@
         
         <!-- THIS IS THE SOUND RECORD ACTIVITY -->
         <activity
-        	android:exported="false" <!-- other apps can not use this activity no more -->
+        	android:exported="false"
             android:name="edu.vuum.mocca.ui.SoundRecordActivity"
-            android:label="@string/title_activity_sound_record">
+            android:label="@string/title_activity_sound_record"> <!-- other apps can not use this activity no more -->
         </activity>
         
     </application>

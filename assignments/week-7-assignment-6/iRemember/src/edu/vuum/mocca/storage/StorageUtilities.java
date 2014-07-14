@@ -22,8 +22,8 @@ public class StorageUtilities {
 	public static final String LOG_TAG = StorageUtilities.class.getCanonicalName();
 	
 	// Constant that denote whether a file should be stored publicly or privately
-	public static final int SECURITY_PUBLIC = 0; // Line 24
-	public static final int SECURITY_PRIVATE = 1;
+	public static final int SECURITY_PUBLIC = 1; // Line 24
+	public static final int SECURITY_PRIVATE = 0;
 	
 	// Constant that denotes what media type a file should be stored as.
 	public static final int MEDIA_TYPE_IMAGE = 1;
@@ -70,22 +70,22 @@ public class StorageUtilities {
 		}
 		
 		// If security is private, store it in the app's private directory.
-		if (security == LoginActivity.MAX_SECURITY) {
-			storageDir = context.getFilesDir();
+		if (security == SECURITY_PUBLIC) {
+			switch (type) {
+			case MEDIA_TYPE_IMAGE:
+				storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+				break;
+			case MEDIA_TYPE_AUDIO:
+				storageDir = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+				break;
+			case MEDIA_TYPE_TEXT:
+				storageDir = context.getExternalFilesDir(null);
+				break;
+		}
 		}
 		// Otherwise, store the file in a public directory depending on its media type.
 		else {	// Line 76
-			switch (type) {
-				case MEDIA_TYPE_IMAGE:
-					storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-					break;
-				case MEDIA_TYPE_AUDIO:
-					storageDir = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-					break;
-				case MEDIA_TYPE_TEXT:
-					storageDir = context.getExternalFilesDir(null);
-					break;
-			}
+			storageDir = context.getFilesDir();
 		}
 		
 		// If a name was specified, use that filename.
